@@ -1,0 +1,31 @@
+GET http://localhost:3000/users
+
+###
+
+GET http://localhost:3000/users/64d5453dcbd8d373c7ab0447
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "gbazera",
+    "display_name": "Giorgi Bazerashvili",
+    "email": "bazerashvili.gio27@gmail.com",
+    "password": "password123"
+}
+
+###
+
+GET http://localhost:3000/posts
+
+###
+
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+    "content": "mogesalmebit megobrebo",
+    "author": "64d55721f77374e8e768d630"
+}
