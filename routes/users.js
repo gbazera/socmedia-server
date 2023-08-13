@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcrypt')
 const User = require('../models/user')
 
 //get all
@@ -18,21 +19,24 @@ router.get('/:id', getUser, (req, res)=>{
 })
 
 //create one
-router.post('/', async (req, res)=>{
-    const user = new User({
-        username: req.body.username,
-        display_name: req.body.display_name,
-        email: req.body.email,
-        password: req.body.password
-    })
+// router.post('/register', async (req, res)=>{
+//     const hashedPassword = await bcrypt.hash(req.body.password, 10)
+//     const user = new User({
+//         username: req.body.username,
+//         display_name: req.body.display_name,
+//         email: req.body.email,
+//         password: hashedPassword
+//     })
 
-    try {
-        const newUser = await user.save()
-        res.status(201).json(newUser)
-    } catch (err) {
-        res.status(400).json({message: err.message})
-    }
-})
+//     try {
+//         const newUser = await user.save()
+//         res.status(201).json(newUser)
+//         res.redirect('/login')
+//     } catch (err) {
+//         res.status(400).json({message: err.message})
+//         res.redirect('/register')
+//     }
+// })
 
 //update one
 router.patch('/:id', getUser, async (req, res)=>{
