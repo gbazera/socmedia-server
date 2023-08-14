@@ -21,21 +21,20 @@ const postsRouter = require('./routes/posts')
 app.use('/posts', postsRouter)
 
 app.post('/register', async (req, res)=>{
-    const hashedPassword = await bcrypt.hash(req.body.password, 10)
-    const user = new User({
-        username: req.body.username,
-        display_name: req.body.display_name,
-        email: req.body.email,
-        password: hashedPassword
-    })
-
     try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10)
+        const user = new User({
+            username: req.body.username,
+            display_name: req.body.display_name,
+            email: req.body.email,
+            password: hashedPassword
+        })
+
         const newUser = await user.save()
         res.json(newUser)
-        res.redirect('/')
-    } catch (err) {
-        res.status(400).json({message: err.message} + 'AAAAAAAAAA')
         res.redirect('/login')
+    } catch (err) {
+        
     }
 })
 
